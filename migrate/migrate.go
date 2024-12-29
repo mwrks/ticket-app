@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"ticket-app/initializers"
-	"ticket-app/models"
+	"github.com/mwrks/ticket-app/initializers"
+	"github.com/mwrks/ticket-app/models"
 )
 
 func init() {

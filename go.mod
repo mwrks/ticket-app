@@ -1,4 +1,4 @@
-module ticket-app
+module github.com/mwrks/ticket-app
 
 go 1.23.3
 

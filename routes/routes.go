@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"ticket-app/controllers"
+	"github.com/mwrks/ticket-app/controllers"
 
 	"github.com/gin-gonic/gin"
 )

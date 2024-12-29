@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"net/http"
-	"ticket-app/initializers"
-	"ticket-app/models"
+	"github.com/mwrks/ticket-app/initializers"
+	"github.com/mwrks/ticket-app/models"
 
 	"github.com/gin-gonic/gin"
 )

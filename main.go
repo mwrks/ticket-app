@@ -1,8 +1,8 @@
 package main
 
 import (
-	"ticket-app/initializers"
-	"ticket-app/routes"
+	"github.com/mwrks/ticket-app/initializers"
+	"github.com/mwrks/ticket-app/routes"
 )
 
 func init() {
