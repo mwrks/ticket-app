@@ -29,7 +29,6 @@ func CreateOrder(c *gin.Context) {
 	ticket.CurrentQuantity--
 	initializers.DB.Save(&ticket)
 
-	// Save the order
 	if result := initializers.DB.Create(&order); result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
 		return
