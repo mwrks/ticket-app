@@ -11,30 +11,37 @@ import (
 
 func CreateOrder(c *gin.Context) {
 	var order models.Order
+
+	// Bind incoming JSON request
 	if err := c.ShouldBindJSON(&order); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
+	// Retrieve associated ticket from the database
 	var ticket models.Ticket
 	if err := initializers.DB.First(&ticket, order.TicketID).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Ticket not found"})
 		return
 	}
 
+	// Check if enough tickets are available
 	if ticket.CurrentQuantity < 1 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Not enough tickets available"})
 		return
 	}
 
+	// Decrement ticket quantity
 	ticket.CurrentQuantity--
 	initializers.DB.Save(&ticket)
 
+	// Create the order in database
 	if result := initializers.DB.Create(&order); result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
 		return
 	}
 
+	// Return created order as JSON response
 	c.JSON(http.StatusCreated, order)
 }
 
